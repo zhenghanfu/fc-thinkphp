@@ -224,14 +224,13 @@ class FcThink
         }
         $this->request->withGet($this->fcRequest->getQueryParams())
           ->setMethod($this->fcRequest->getMethod())
+          ->withHeader($this->parseHeaders())
+          ->withServer($this->parseServerParams())
+          ->withCookie($this->parseCookies())
           ->withInput(
             $this->fcRequest->getBody()
               ->getContents()
-          )
-          ->withHeader($this->parseHeaders())
-          ->withServer($this->parseServerParams())
-          ->withCookie($this->parseCookies());
-        
+          );
         return $this;
     }
     
